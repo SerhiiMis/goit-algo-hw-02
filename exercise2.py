@@ -1,18 +1,19 @@
 from collections import deque
 
+# Function to check if a string is a palindrome
 def is_palindrome(input_string):
-    # Перетворюємо рядок у нижній регістр та видаляємо пробіли
-    input_string = input_string.lower().replace(" ", "")
-    # Створюємо двосторонню чергу
-    char_queue = deque(input_string)
+    # Convert the string to lowercase and remove spaces
+    normalized = input_string.lower().replace(" ", "")
+    # Create a double-ended queue of characters
+    char_queue = deque(normalized)
     
-    # Порівнюємо символи з обох кінців черги
+    # Compare characters from both ends of the queue
     while len(char_queue) > 1:
         if char_queue.popleft() != char_queue.pop():
             return False
-    
     return True
 
-# Приклад використання функції
-input_str = "A man a plan a canal Panama"
-print(is_palindrome(input_str)) 
+# Example usage
+if __name__ == "__main__":
+    test_str = "A man a plan a canal Panama"
+    print(is_palindrome(test_str))

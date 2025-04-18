@@ -2,38 +2,37 @@ import queue
 import time
 import random
 
-
-# Створення черги заявок
+# Create a queue for requests
 queue = queue.Queue()
 
-# Функція для генерації нових заявок
+# Function to generate new requests
 def generate_request():
     while True:
-        # Створення нової заявки
+        # Create a new request with a random ID
         new_request = random.randint(1, 1000)
-        # Додавання заявки до черги
+        # Add the request to the queue
         queue.put(new_request)
         print(f"Створено нову заявку: {new_request}")
-        # Затримка перед наступною генерацією заявки
+        # Pause before generating the next request
         time.sleep(random.uniform(0.5, 2))
 
-# Функція для обробки заявок
+# Function to process requests from the queue
 def process_request():
     while True:
         if not queue.empty():
-            # Видалення заявки з черги
+            # Retrieve a request from the queue
             request = queue.get()
             print(f"Заявка {request} обробляється")
-            # Імітація обробки заявки
+            # Simulate processing time
             time.sleep(random.uniform(1, 3))
         else:
             print("Черга порожня")
-        # Затримка перед перевіркою черги на наявність заявок
+        # Pause before checking the queue again
         time.sleep(1)
 
-# Головний цикл програми
+# Main loop to run both functions
 while True:
-    # Виконання функції generate_request() для створення нових заявок
+    # Start generating requests
+    # Note: in practice you would use threading or multiprocessing to run these functions concurrently
     generate_request()
-    # Виконання функції process_request() для обробки заявок
     process_request()
